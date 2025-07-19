@@ -1,0 +1,36 @@
+# HustleTech GitHub Pages - Development Compose
+# Professional React development environment
+
+services:
+  # 🚀 HUSTLETECH PAGES DEV SERVICE - Development environment for React Static Site
+  hustletech-pages-dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/docker/devcontainer.Dockerfile
+    container_name: hustletech-pages-dev
+    image: hustletech/pages-dev
+    ports:
+      - "127.0.0.1:${VITE_HOST_PORT}:${VITE_PORT}"
+      - "127.0.0.1:${PREVIEW_HOST_PORT}:${PREVIEW_PORT}"
+    volumes:
+      - ../:/workspace
+      - ~/.ssh:/home/developer/.ssh:ro # SSH keys for Linux/Mac
+      - ${USERPROFILE}/.ssh:/home/developer/.ssh:ro # SSH keys for Windows
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - hustletech-pages
+    # Best practice: always restart on failure
+    restart: unless-stopped
+
+networks:
+  hustletech-pages:
+    driver: bridge
+    name: hustletech-pages-network

@@ -1,0 +1,49 @@
+{
+  "name": "web-dev-container",
+  "dockerComposeFile": "./docker-compose.yaml",
+  "service": "hustletech-pages-dev",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "developer",
+  "postCreateCommand": "echo 'DevContainer ready!'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.vscode-json",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.live-server",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-chrome-debug",
+        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-containers",
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint",
+        "GitHub.copilot",
+        "VisualStudioExptTeam.intellicode-api-usage-examples",
+        "mhutchie.git-graph",
+        "aaron-bond.better-comments",
+        "WakaTime.vscode-wakatime",
+        "vscode-icons-team.vscode-icons",
+        "zhuangtongfa.material-theme",
+        "VisualStudioExptTeam.vscodeintellicode"
+      ]
+    }
+  },
+  "forwardPorts": [5174, 5175, 5500],
+  "portsAttributes": {
+    "5174": {
+      "label": "Dev Server",
+      "onAutoForward": "silent"
+    },
+    "5175": {
+      "label": "Preview Server",
+      "onAutoForward": "silent"
+    },
+    "5500": {
+      "label": "Live Server",
+      "onAutoForward": "silent"
+    }
+  }
+}
